@@ -54,8 +54,11 @@ pub fn day1_2() {
 
     let mut cal_sum = 0;
     for i in 0..3 {
+        if i >= elf_calories.len() {
+            break;
+        }
         let cal = elf_calories[i];
-        println!("{cal}");
+        println!("{i} {cal}");
         cal_sum += cal;
     }
 
