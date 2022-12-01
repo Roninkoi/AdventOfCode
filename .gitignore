@@ -1,3 +1,6 @@
 .idea
 doc
 target
+aoc
+.rustc_info.json
+
