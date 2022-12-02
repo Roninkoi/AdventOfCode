@@ -1,6 +1,9 @@
-#[allow(dead_code)]
+#![allow(dead_code)]
+#![allow(unused)]
+#![allow(unused_mut)]
 mod day1;
+mod day2;
 
 fn main() {
-    day1::day1_2();
+    day2::day2_2("input/input");
 }
