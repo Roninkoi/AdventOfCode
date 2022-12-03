@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::io;
 
 #[derive(PartialEq, Clone, Copy)]
 enum Shape {
@@ -121,7 +122,7 @@ fn pick_shape(opp: Shape, end_score: Score) -> Option<Shape> {
 }
 
 pub fn day2_1(file_path: &str) {
-    let stdin = std::io::stdin();
+    let stdin = io::stdin();
     let file = File::open(file_path).expect("File not found!");
     let reader = BufReader::new(file);
 
@@ -144,14 +145,14 @@ pub fn day2_1(file_path: &str) {
     println!("Total score: {score}");
 }
 
-pub fn day2_2(file_path: &str) {
-    let stdin = std::io::stdin();
-    let file = File::open(file_path).expect("File not found!");
+pub fn day2_2(file_path: &str) -> io::Result<()> {
+    let stdin = io::stdin();
+    let file = File::open(file_path)?;
     let reader = BufReader::new(file);
 
     let mut score = 0;
     for line in reader.lines() {
-        let l = line.unwrap();
+        let l = line?;
         let words = l.split_whitespace().collect::<Vec<&str>>();
         if words.len() < 2 {
             continue;
@@ -168,4 +169,6 @@ pub fn day2_2(file_path: &str) {
     }
 
     println!("Total score: {score}");
+
+    Ok(())
 }
