@@ -4,9 +4,11 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() {
     //day2::day2_2("input/day2_input");
     //day3::day3_1("input/day3_input");
-    day3::day3_2("input/day3_input");
+    //day3::day3_2("input/day3_input");
+    day4::day4_2("input/day4_input");
 }

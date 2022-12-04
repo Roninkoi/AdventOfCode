@@ -3,9 +3,9 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
-/**
- * Calculate priorities of items in pocket: a-z = 1-26, A-Z = 27-52
- */
+///
+/// Calculate priorities of items in pocket: a-z = 1-26, A-Z = 27-52
+///
 fn get_priority(pocket: &str) -> Vec<u32> {
     pocket
         .chars()
@@ -99,7 +99,8 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
     let multiline = true; // read pockets over multiple lines (false for part 1, true for part 2)
     let mut n_bags = 0;
     let mut i_line = 0;
-    for line in reader.lines() { // read bags and pockets
+    for line in reader.lines() {
+        // read bags and pockets
         let l = line?;
         let mut size = l.len();
 
@@ -108,7 +109,8 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
             let mut pocket = l.to_string();
             pockets.push(pocket);
             i_line += 1;
-            if i_line % n_pockets == 0 { // last pocket, move to next bag
+            if i_line % n_pockets == 0 {
+                // last pocket, move to next bag
                 bags.push(pockets.clone());
                 pockets.clear();
                 i_line = 0;
@@ -120,7 +122,8 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
                 continue;
             }
             let pocket_size = size / n_pockets;
-            for i in 0..n_pockets { // read equal-sized pockets from line
+            for i in 0..n_pockets {
+                // read equal-sized pockets from line
                 let mut pocket = l[i * pocket_size..(i + 1) * pocket_size].to_string();
                 println!("pocket: {}", pocket);
                 pockets.push(pocket);
@@ -133,14 +136,10 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
     }
 
     // compute priorities of items in all pockets in all bags
-    let prios = bags
+    let prios: Vec<Vec<Vec<u32>>> = bags
         .iter()
-        .map(|bag| {
-            bag.iter()
-                .map(|pocket| get_priority(pocket))
-                .collect::<Vec<Vec<u32>>>()
-        })
-        .collect::<Vec<Vec<Vec<u32>>>>();
+        .map(|bag| bag.iter().map(|pocket| get_priority(pocket)).collect())
+        .collect();
 
     let mut prio_tot = 0;
     for bag in 0..bags.len() {
@@ -149,7 +148,10 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
         let mut isect: String = String::new(); // intersection between all pockets
         for pocket in 0..bags[bag].len() {
             let pocket_set = HashSet::<char>::from_iter(bags[bag][pocket].chars());
-            println!("pocket {pocket} set {}", pocket_set.clone().into_iter().collect::<String>());
+            println!(
+                "pocket {pocket} set {}",
+                pocket_set.clone().into_iter().collect::<String>()
+            );
 
             // calculate intersection between this pocket and previous pocket
             pocket_set_prev = if pocket_set_prev.is_some() {
