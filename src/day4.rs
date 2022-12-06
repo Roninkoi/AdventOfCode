@@ -47,6 +47,7 @@ pub fn day4_2(file_path: &str) -> io::Result<()> {
         let b1 = pair[0][1].parse::<i32>().unwrap();
         let a2 = pair[1][0].parse::<i32>().unwrap();
         let b2 = pair[1][1].parse::<i32>().unwrap();
+        println!("{:?}", pair);
 
         if (a1 <= a2 && b1 >= b2)
             || (a2 <= a1 && b2 >= b1)
