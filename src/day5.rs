@@ -21,7 +21,7 @@ fn take(stacks: &mut Vec<Vec<String>>, num: usize, from: usize) -> Vec<String> {
         if stack_from.is_some() {
             let sf = stack_from.unwrap();
             if sf.len() >= num {
-                took = sf.drain(sf.len() - num..).collect::<Vec<String>>();
+                took = sf.split_off(sf.len() - num);
             }
         } else {
             println!("Stack {from} empty!");
