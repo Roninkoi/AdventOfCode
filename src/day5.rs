@@ -12,7 +12,7 @@ pub fn day5_2(file_path: &str) -> io::Result<()> {
 }
 
 ///
-/// Take a number of crates @param num from position @param from top of stack
+/// Take a number of crates `num` from top of stack at position `from`
 ///
 fn take(stacks: &mut Vec<Vec<String>>, num: usize, from: usize) -> Vec<String> {
     let mut took = Vec::<String>::new();
@@ -31,7 +31,7 @@ fn take(stacks: &mut Vec<Vec<String>>, num: usize, from: usize) -> Vec<String> {
 }
 
 ///
-/// Place a number of crates @param took on top of stack in position @param to
+/// Place a number of crates `took` on top of stack in position `to`
 ///
 fn place(stacks: &mut Vec<Vec<String>>, took: &mut Vec<String>, to: usize) {
     let stack_to = stacks.get_mut(to - 1);
@@ -97,7 +97,7 @@ fn crate_mover(file_path: &str, reverse: bool) -> io::Result<()> {
         }
         stack_input.push(l);
     }
-    let stack_height = stack_grid.len(); // y height of stacks
+    let stack_height = stack_grid.len(); // initial max height of stacks
 
     for col in 0..stack_num {
         // transpose stack grid so that we can push and pop stacks
