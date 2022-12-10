@@ -114,7 +114,10 @@ impl FileSystem {
             let child = &dir_child.borrow().dir_name;
             print!("{} ", child)
         }
-        println!("{:?}", self.current.borrow().file.keys().collect::<Vec<&String>>());
+        println!(
+            "{:?}",
+            self.current.borrow().file.keys().collect::<Vec<&String>>()
+        );
     }
     pub fn up(&mut self) {
         if self.parent.is_some() {
@@ -126,7 +129,10 @@ impl FileSystem {
                 let child = &dir_child.borrow().dir_name;
                 print!("{} ", child)
             }
-            println!("{:?}", self.current.borrow().file.keys().collect::<Vec<&String>>());
+            println!(
+                "{:?}",
+                self.current.borrow().file.keys().collect::<Vec<&String>>()
+            );
         } else {
             println!("can't go up from {}", self.current.borrow().dir_name);
         }
@@ -146,13 +152,21 @@ impl FileSystem {
                 let child = &dir_child.borrow().dir_name;
                 print!("{} ", child)
             }
-            println!("{:?}", self.current.borrow().file.keys().collect::<Vec<&String>>());
+            println!(
+                "{:?}",
+                self.current.borrow().file.keys().collect::<Vec<&String>>()
+            );
         } else {
-            println!("dir {dir_name} not found in {}", self.current.borrow().dir_name);
+            println!(
+                "dir {dir_name} not found in {}",
+                self.current.borrow().dir_name
+            );
         }
     }
     pub fn add_dir(&mut self, dir_name: String) {
-        self.current.borrow_mut().add_dir(dir_name, Some(self.current.clone()));
+        self.current
+            .borrow_mut()
+            .add_dir(dir_name, Some(self.current.clone()));
     }
     pub fn add_file(&mut self, file_name: String, file_size: i32) {
         self.current.borrow_mut().add_file(file_name, file_size);
@@ -170,7 +184,9 @@ impl FileSystem {
         if req_capacity <= 0 {
             return 0;
         }
-        self.root.borrow_mut().smallest_geq(self.capacity, req_capacity)
+        self.root
+            .borrow_mut()
+            .smallest_geq(self.capacity, req_capacity)
     }
 }
 
@@ -221,7 +237,7 @@ fn read_file_system(file_path: &str) -> FileSystem {
             }
         }
     }
-    return file_system
+    return file_system;
 }
 
 pub fn day7_1(file_path: &str) -> io::Result<()> {

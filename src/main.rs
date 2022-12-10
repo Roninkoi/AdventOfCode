@@ -8,6 +8,7 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
 
 fn main() {
     day1::day1_1("input/day1_input");
@@ -24,4 +25,6 @@ fn main() {
     day6::day6_2("input/day6_input");
     day7::day7_1("input/day7_input");
     day7::day7_2("input/day7_input");
+    day8::day8_1("input/day8_input");
+    day8::day8_2("input/day8_input");
 }
