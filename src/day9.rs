@@ -23,7 +23,7 @@ fn read_motions(file_path: &str) -> Vec<(String, i32)> {
     motions
 }
 
-pub fn simulate_rope(file_path: &str, tail_len: usize) -> io::Result<()> {
+fn simulate_rope(file_path: &str, tail_len: usize) -> io::Result<()> {
     let mut motions = read_motions(file_path);
     let mut tail_path = HashSet::new();
 
