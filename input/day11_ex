@@ -1,4 +1,4 @@
-Monkey 0:
+Monkey Suzanne:
   Starting items: 79, 98
   Operation: new = old * 19
   Test: divisible by 23
@@ -10,7 +10,7 @@ Monkey 1:
   Operation: new = old + 6
   Test: divisible by 19
     If true: throw to monkey 2
-    If false: throw to monkey 0
+    If false: throw to monkey Suzanne
 
 Monkey 2:
   Starting items: 79, 60, 97
@@ -23,5 +23,5 @@ Monkey 3:
   Starting items: 74
   Operation: new = old + 3
   Test: divisible by 17
-    If true: throw to monkey 0
+    If true: throw to monkey Suzanne
     If false: throw to monkey 1

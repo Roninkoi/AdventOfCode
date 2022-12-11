@@ -38,7 +38,7 @@ where
     score
 }
 
-fn read_trees(file_path: &str) -> Vec::<Vec<i32>> {
+fn read_trees(file_path: &str) -> Vec<Vec<i32>> {
     let stdin = io::stdin();
     let file = File::open(file_path).unwrap();
     let mut reader = BufReader::new(file);

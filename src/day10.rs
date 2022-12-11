@@ -27,8 +27,8 @@ fn read_program(file_path: &str) -> Vec<(String, i32)> {
 }
 
 fn render(x: i32, cycle: i32) -> io::Result<()> {
-    let r = (cycle-1) % 40;
-    if (r - (x+1)).abs() <= 1 {
+    let r = (cycle - 1) % 40;
+    if (r - (x + 1)).abs() <= 1 {
         print!("#");
     } else {
         print!(".");
@@ -83,7 +83,8 @@ fn simulate_cpu(file_path: &str) -> io::Result<()> {
         .collect::<Vec<i32>>();
     println!(
         "{:?} {}",
-        signal_strengths, signal_strengths.iter().sum::<i32>()
+        signal_strengths,
+        signal_strengths.iter().sum::<i32>()
     );
 
     Ok(())

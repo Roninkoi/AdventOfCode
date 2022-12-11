@@ -9,22 +9,22 @@ use std::rc::Rc;
 
 #[derive(Clone, Debug)]
 struct Monke {
-    pub id: u32,                      // monkey id
+    pub id: String,                   // monkey id
     pub items: Vec<u64>,              // list of item worry levels
     pub op: (String, String, String), // (op, arg1, arg2)
     pub test: u64,                    // divisible by test
-    pub dest: (usize, usize),         // destination (true, false)
+    pub dest: (String, String),       // destination (true, false)
     pub activity: u64,                // number of items inspected
 }
 
 impl Monke {
     pub fn new() -> Monke {
         Monke {
-            id: 0,
+            id: "0".to_string(),
             items: Vec::new(),
             op: ("".to_string(), "".to_string(), "".to_string()),
             test: 1,
-            dest: (0, 0),
+            dest: ("0".to_string(), "0".to_string()),
             activity: 0,
         }
     }
@@ -54,7 +54,7 @@ fn read_monke(file_path: &str) -> Vec<Monke> {
             first = words[2];
         }
         if dest {
-            let monke_id = words[10].parse::<usize>().unwrap();
+            let monke_id = words[10].to_string();
 
             if dest_i == 0 {
                 monke.dest.0 = monke_id;
@@ -67,7 +67,7 @@ fn read_monke(file_path: &str) -> Vec<Monke> {
 
         match first {
             "Monkey" => {
-                monke.id = words[1].parse::<u32>().unwrap();
+                monke.id = words[1].to_string();
             }
             "Starting" => {
                 // items
@@ -127,7 +127,7 @@ fn do_rounds(file_path: &str, n_rounds: u32, worry_div: u64) -> Vec<Monke> {
         }
     };
 
-    for round in 0..n_rounds {
+    for _ in 0..n_rounds {
         //println!("round {round}");
         for i in 0..monkeys.len() {
             let monke = monkeys[i].clone();
@@ -138,10 +138,22 @@ fn do_rounds(file_path: &str, n_rounds: u32, worry_div: u64) -> Vec<Monke> {
                 let mut worry: u64 = (inspect(&op, &arg1, &arg2, item) / worry_div) % test_mod;
                 //println!("{item} -> {worry}");
                 if worry % monke.test == 0 {
-                    monkeys[monke.dest.0].items.push(worry);
+                    monkeys
+                        .iter_mut()
+                        .filter(|m| m.id == monke.dest.0)
+                        .next()
+                        .unwrap()
+                        .items
+                        .push(worry);
                     //println!("throwing to monkey {}", monke.dest.0);
                 } else {
-                    monkeys[monke.dest.1].items.push(worry);
+                    monkeys
+                        .iter_mut()
+                        .filter(|m| m.id == monke.dest.1)
+                        .next()
+                        .unwrap()
+                        .items
+                        .push(worry);
                     //println!("throwing to monkey {}", monke.dest.1);
                 }
                 monkeys[i].items[j] = 0;
@@ -168,7 +180,7 @@ pub fn day11_1(file_path: &str) -> io::Result<()> {
 }
 
 pub fn day11_2(file_path: &str) -> io::Result<()> {
-    let mut monkeys = do_rounds(file_path, 10000, 1);
+    let mut monkeys = do_rounds(file_path, 10_000, 1);
     for monke in monkeys.clone() {
         println!("{:?}", monke);
     }
