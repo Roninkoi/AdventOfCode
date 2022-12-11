@@ -97,7 +97,7 @@ fn read_monke(file_path: &str) -> Vec<Monke> {
 
 fn do_rounds(file_path: &str, n_rounds: u32, worry_div: u64) -> Vec<Monke> {
     let mut monkeys = read_monke(file_path);
-    let tests = monkeys.iter().map(|m| m.test).collect::<Vec<u64>>();
+    let test_mod = monkeys.iter().map(|m| m.test).product::<u64>();
 
     let get_arg = |a: &String, old: &u64| match a.as_str() {
         "old" => return *old,
@@ -135,7 +135,7 @@ fn do_rounds(file_path: &str, n_rounds: u32, worry_div: u64) -> Vec<Monke> {
             let (op, arg1, arg2) = monke.op;
 
             for (j, item) in monke.items.iter().enumerate() {
-                let mut worry: u64 = (inspect(&op, &arg1, &arg2, item) / worry_div) % (tests.iter().product::<u64>());
+                let mut worry: u64 = (inspect(&op, &arg1, &arg2, item) / worry_div) % test_mod;
                 //println!("{item} -> {worry}");
                 if worry % monke.test == 0 {
                     monkeys[monke.dest.0].items.push(worry);
