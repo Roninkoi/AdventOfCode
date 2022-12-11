@@ -6,6 +6,8 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
+use crate::util::{dprint, dprintln};
+
 fn read_program(file_path: &str) -> Vec<(String, i32)> {
     let stdin = io::stdin();
     let file = File::open(file_path).unwrap();
@@ -82,7 +84,7 @@ fn simulate_cpu(file_path: &str) -> io::Result<()> {
         })
         .collect::<Vec<i32>>();
     println!(
-        "{:?} {}",
+        "signal strengths: {:?} sum: {}",
         signal_strengths,
         signal_strengths.iter().sum::<i32>()
     );

@@ -3,6 +3,8 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, Read};
 
+use crate::util::{dprintln, dprint};
+
 pub fn day5_1(file_path: &str) -> io::Result<()> {
     crate_mover(file_path, true)
 }
@@ -24,7 +26,7 @@ fn take(stacks: &mut Vec<Vec<String>>, num: usize, from: usize) -> Vec<String> {
                 took = sf.split_off(sf.len() - num);
             }
         } else {
-            println!("Stack {from} empty!");
+            dprintln!("Stack {from} empty!");
         }
     }
     took
@@ -57,7 +59,7 @@ fn crate_mover(file_path: &str, reverse: bool) -> io::Result<()> {
         let l = line?;
         let mut lsize = l.len();
 
-        println!("{l}");
+        dprintln!("{l}");
 
         if l.is_empty() {
             // stack description ends
@@ -90,9 +92,9 @@ fn crate_mover(file_path: &str, reverse: bool) -> io::Result<()> {
                 })
                 .collect();
             for s in &stack_grid {
-                println!("{:?}", s);
+                dprintln!("{:?}", s);
             }
-            println!("stacks:\n{:?}\n{:?}", stack_names, stack_names_pos);
+            dprintln!("stacks:\n{:?}\n{:?}", stack_names, stack_names_pos);
             break;
         }
         stack_input.push(l);
@@ -125,11 +127,11 @@ fn crate_mover(file_path: &str, reverse: bool) -> io::Result<()> {
         words.find(|s| *s == "to");
         let to = words.next().unwrap().parse::<usize>().unwrap(); // to destination
 
-        println!("{l} ({} {} {})", num, from, to);
+        dprintln!("{l} ({} {} {})", num, from, to);
 
         let mut took = take(&mut stacks, num, from);
 
-        println!("took {:?}", took);
+        dprintln!("took {:?}", took);
         if reverse {
             took.reverse(); // reverse order of crates (picked up one at a time)
         }
@@ -138,10 +140,11 @@ fn crate_mover(file_path: &str, reverse: bool) -> io::Result<()> {
 
         for (i, s) in stacks.iter().enumerate() {
             // print state of stacks
-            println!("{} {:?}", i + 1, s);
+            dprintln!("{} {:?}", i + 1, s);
         }
     }
 
+    print!("top crates: ");
     for (i, s) in stacks.iter().enumerate() {
         // print top crates
         print!("{}", s.iter().last().unwrap());

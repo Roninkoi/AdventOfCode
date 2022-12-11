@@ -5,6 +5,8 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
+use crate::util::{dprintln, dprint};
+
 #[derive(Clone, Debug, PartialEq)]
 struct DirTree {
     pub parent: Option<Rc<RefCell<DirTree>>>,
@@ -59,7 +61,7 @@ impl DirTree {
     pub fn sum_leq(&mut self, leq: i32) -> i32 {
         let mut size_tot = 0;
         if self.size <= leq {
-            println!("leq {} {}", self.dir_name, self.size);
+            dprintln!("leq {} {}", self.dir_name, self.size);
             size_tot += self.size;
         }
         for c in &self.child {
@@ -71,7 +73,7 @@ impl DirTree {
     pub fn smallest_geq(&mut self, smallest: i32, geq: i32) -> i32 {
         let mut best = smallest;
         if self.size >= geq && self.size <= best {
-            println!("found smallest {} {}", self.dir_name, self.size);
+            dprintln!("found smallest {} {}", self.dir_name, self.size);
             best = self.size;
         }
         for c in &self.child {
@@ -112,9 +114,9 @@ impl FileSystem {
 
         for dir_child in &self.current.borrow().child {
             let child = &dir_child.borrow().dir_name;
-            print!("{} ", child)
+            dprint!("{} ", child)
         }
-        println!(
+        dprintln!(
             "{:?}",
             self.current.borrow().file.keys().collect::<Vec<&String>>()
         );
@@ -127,9 +129,9 @@ impl FileSystem {
 
             for dir_child in &self.current.borrow().child {
                 let child = &dir_child.borrow().dir_name;
-                print!("{} ", child)
+                dprint!("{} ", child)
             }
-            println!(
+            dprintln!(
                 "{:?}",
                 self.current.borrow().file.keys().collect::<Vec<&String>>()
             );
@@ -150,9 +152,9 @@ impl FileSystem {
 
             for dir_child in &self.current.borrow().child {
                 let child = &dir_child.borrow().dir_name;
-                print!("{} ", child)
+                dprint!("{} ", child)
             }
-            println!(
+            dprintln!(
                 "{:?}",
                 self.current.borrow().file.keys().collect::<Vec<&String>>()
             );
@@ -224,16 +226,16 @@ fn read_file_system(file_path: &str) -> FileSystem {
                 _ => {}
             }
             command = cmd.to_string();
-            println!("$ {command} {dir}");
+            dprintln!("$ {command} {dir}");
         } else if listing {
             let file_name = words[1].to_string();
             if words[0] == "dir" {
                 file_system.add_dir(file_name.to_owned());
-                println!("added dir {file_name}");
+                dprintln!("added dir {file_name}");
             } else {
                 let file_size = words[0].parse::<i32>().unwrap();
                 file_system.add_file(file_name.to_owned(), file_size);
-                println!("added file {file_name} with size {file_size}");
+                dprintln!("added file {file_name} with size {file_size}");
             }
         }
     }
@@ -242,10 +244,10 @@ fn read_file_system(file_path: &str) -> FileSystem {
 
 pub fn day7_1(file_path: &str) -> io::Result<()> {
     let mut file_system = read_file_system(file_path);
-    print!("root: ");
+    dprint!("root: ");
     file_system.root();
     let size_tot = file_system.calc_size();
-    println!("total filesystem size: {size_tot}");
+    dprintln!("total filesystem size: {size_tot}");
     println!("less or equal to 100000: {}", file_system.sum_leq(100000));
 
     Ok(())
@@ -253,10 +255,10 @@ pub fn day7_1(file_path: &str) -> io::Result<()> {
 
 pub fn day7_2(file_path: &str) -> io::Result<()> {
     let mut file_system = read_file_system(file_path);
-    print!("root: ");
+    dprint!("root: ");
     file_system.root();
     let size_tot = file_system.calc_size();
-    println!("total filesystem size: {size_tot}");
+    dprintln!("total filesystem size: {size_tot}");
 
     println!("dir to remove: {}", file_system.find_remove(30000000));
 

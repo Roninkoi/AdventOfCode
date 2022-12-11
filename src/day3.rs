@@ -3,6 +3,8 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
+use crate::util::{dprintln, dprint};
+
 ///
 /// Calculate priorities of items in pocket: a-z = 1-26, A-Z = 27-52
 ///
@@ -61,25 +63,25 @@ pub fn day3_1(file_path: &str) -> io::Result<()> {
         }
         let intersect = pocket1.intersection(&pocket2);
 
-        println!("pockets in bag {n}:");
+        dprintln!("pockets in bag {n}:");
         for p in &prios[0] {
-            print!("{p} ");
+            dprint!("{p} ");
         }
-        println!("= {}", pockets[0]);
+        dprintln!("= {}", pockets[0]);
         for p in &prios[1] {
-            print!("{p} ");
+            dprint!("{p} ");
         }
-        println!("= {}", pockets[1]);
+        dprintln!("= {}", pockets[1]);
 
         let mut prio = 0;
-        println!("intersection of bag {n}:");
+        dprintln!("intersection of bag {n}:");
         for isect in intersect {
-            print!("{isect} ");
+            dprint!("{isect} ");
             prio += prios1.get(isect).unwrap();
             // do we add items in both pockets?
             //prio += prios2.get(isect).unwrap();
         }
-        println!("priority: {prio}");
+        dprintln!("priority: {prio}");
         prio_tot += prio;
         n += 1;
     }
@@ -104,7 +106,7 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
         let l = line?;
         let mut size = l.len();
 
-        println!("bag {n_bags}: {l}");
+        dprintln!("bag {n_bags}: {l}");
         if multiline {
             let mut pocket = l.to_string();
             pockets.push(pocket);
@@ -125,7 +127,7 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
             for i in 0..n_pockets {
                 // read equal-sized pockets from line
                 let mut pocket = l[i * pocket_size..(i + 1) * pocket_size].to_string();
-                println!("pocket: {}", pocket);
+                dprintln!("pocket: {}", pocket);
                 pockets.push(pocket);
             }
             bags.push(pockets.clone());
@@ -144,11 +146,11 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
     let mut prio_tot = 0;
     for bag in 0..bags.len() {
         let mut pocket_set_prev = None;
-        println!("bag {bag}");
+        dprintln!("bag {bag}");
         let mut isect: String = String::new(); // intersection between all pockets
         for pocket in 0..bags[bag].len() {
             let pocket_set = HashSet::<char>::from_iter(bags[bag][pocket].chars());
-            println!(
+            dprintln!(
                 "pocket {pocket} set {}",
                 pocket_set.clone().into_iter().collect::<String>()
             );
@@ -162,17 +164,17 @@ pub fn day3_2(file_path: &str) -> io::Result<()> {
                 Some(pocket_set)
             };
             isect = pocket_set_prev.clone().unwrap().into_iter().collect();
-            println!("isect {isect}");
+            dprintln!("isect {isect}");
 
-            print!("pocket {pocket} {} = ", bags[bag][pocket]);
+            dprint!("pocket {pocket} {} = ", bags[bag][pocket]);
             for prio in &prios[bag][pocket] {
-                print!("{prio} ");
+                dprint!("{prio} ");
             }
-            println!();
+            dprintln!();
         }
         // add up priorities of intersection (though in AoC input there is only one element)
         let isect_prio: u32 = get_priority(isect.as_str()).iter().sum();
-        println!("isect prio {isect_prio}");
+        dprintln!("isect prio {isect_prio}");
         prio_tot += isect_prio;
     }
 

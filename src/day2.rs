@@ -2,6 +2,8 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
+use crate::util::{dprintln, dprint};
+
 #[derive(PartialEq, Clone, Copy)]
 enum Shape {
     Rock = 1,
@@ -137,7 +139,7 @@ pub fn day2_1(file_path: &str) {
         let me = parse_shape(words[1]).unwrap();
 
         let mut result = get_score(opp, me).unwrap();
-        println!(
+        dprintln!(
             "Opponent: {} me: {} result: {}",
             opp as i32, me as i32, result as i32
         );
@@ -166,7 +168,7 @@ pub fn day2_2(file_path: &str) -> io::Result<()> {
         let me = pick_shape(opp, end_score).unwrap();
 
         let mut result = get_score(opp, me).unwrap();
-        println!(
+        dprintln!(
             "Opponent: {} me: {} result: {}",
             opp as i32, me as i32, result as i32
         );

@@ -5,6 +5,8 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
+use crate::util::{dprintln, dprint};
+
 fn get_visible<'a, I>(mut iter: I) -> Vec<bool>
 where
     I: Iterator<Item = &'a i32>,
@@ -61,11 +63,11 @@ pub fn day8_1(file_path: &str) -> io::Result<()> {
     let w = grid[0].len();
     for row in &grid {
         for col in row {
-            print!("{col}");
+            dprint!("{col}");
         }
-        println!();
+        dprintln!();
     }
-    println!("{w} x {h}");
+    dprintln!("{w} x {h}");
     let mut visibility: Vec<Vec<bool>> = Vec::new();
     let mut x_visibility: Vec<Vec<bool>> = Vec::new();
     for y in 0..h {
@@ -106,9 +108,9 @@ pub fn day8_1(file_path: &str) -> io::Result<()> {
     }
     for col in 0..w {
         for row in 0..h {
-            print!("{}", visibility[row][col] as i32);
+            dprint!("{}", visibility[row][col] as i32);
         }
-        println!();
+        dprintln!();
     }
 
     let vis_num = visibility.iter().flatten().filter(|v| **v).count();

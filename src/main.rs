@@ -15,11 +15,11 @@ mod day6;
 mod day7;
 mod day8;
 mod day9;
+mod util;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let day = args.get(1);
-    let mut printing = true;
 
     macro_rules! d1 {
         () => {
@@ -145,7 +145,7 @@ fn main() {
             measure();
 
             for (i, diff) in diffs.iter().enumerate() {
-                println!("Day {} time: {} ms", i + 1, diff.as_millis());
+                println!("Day {} time: {} us", i + 1, diff.as_micros());
             }
         }
         _ => {}

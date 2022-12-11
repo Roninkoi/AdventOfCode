@@ -2,6 +2,8 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
+use crate::util::{dprintln, dprint};
+
 pub fn day1_1(file_path: &str) {
     let stdin = io::stdin();
     let file = File::open(file_path).expect("File not found!");
@@ -24,38 +26,7 @@ pub fn day1_1(file_path: &str) {
     let mut elf_max = 0;
     let mut cal_max = 0;
     for (elf, cal) in elf_calories.iter().enumerate() {
-        println!("{elf}, {cal}");
-        if *cal > cal_max {
-            cal_max = *cal;
-            elf_max = elf;
-        }
-    }
-
-    println!("Elf {elf_max} has the most calories: {cal_max}");
-}
-
-pub fn day1_1_old() {
-    let stdin = std::io::stdin();
-    let mut lines = stdin.lock().lines();
-
-    let mut elf_calories = Vec::<i32>::new();
-    let mut total_calories = 0;
-    while let Some(line) = lines.next() {
-        let l = line.unwrap();
-        if l.len() > 0 {
-            let v = l.parse::<i32>().unwrap();
-            total_calories += v;
-        } else {
-            elf_calories.push(total_calories);
-            total_calories = 0;
-        }
-    }
-    elf_calories.push(total_calories);
-
-    let mut elf_max = 0;
-    let mut cal_max = 0;
-    for (elf, cal) in elf_calories.iter().enumerate() {
-        println!("{elf}, {cal}");
+        dprintln!("{elf}, {cal}");
         if *cal > cal_max {
             cal_max = *cal;
             elf_max = elf;
@@ -93,7 +64,7 @@ pub fn day1_2(file_path: &str) {
             break;
         }
         let cal = elf_calories[i];
-        println!("{i} {cal}");
+        dprintln!("{i} {cal}");
         cal_sum += cal;
     }
 

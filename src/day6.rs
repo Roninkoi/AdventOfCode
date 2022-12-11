@@ -3,6 +3,8 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, Read};
 
+use crate::util::{dprintln, dprint};
+
 pub fn day6_1(file_path: &str) -> io::Result<()> {
     let stdin = io::stdin();
     let file = File::open(file_path)?;
@@ -21,7 +23,7 @@ pub fn day6_1(file_path: &str) -> io::Result<()> {
                 buf.remove(0);
             }
             buf.push(c);
-            print!(" {buf} ");
+            dprint!(" {buf} ");
             count += 1;
 
             let mut dup = false;
@@ -38,7 +40,7 @@ pub fn day6_1(file_path: &str) -> io::Result<()> {
                 break;
             }
         }
-        println!();
+        dprintln!();
         println!("start of packet: {count}");
     }
     Ok(())
@@ -62,7 +64,7 @@ pub fn day6_2(file_path: &str) -> io::Result<()> {
                 buf.remove(0);
             }
             buf.push(c);
-            print!(" {buf} ");
+            dprint!(" {buf} ");
             count += 1;
 
             let mut dup = false;
@@ -79,7 +81,7 @@ pub fn day6_2(file_path: &str) -> io::Result<()> {
                 break;
             }
         }
-        println!();
+        dprintln!();
         println!("start of message: {count}");
     }
     Ok(())

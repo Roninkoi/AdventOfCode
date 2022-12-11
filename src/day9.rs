@@ -6,6 +6,8 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
+use crate::util::{dprintln, dprint};
+
 fn read_motions(file_path: &str) -> Vec<(String, i32)> {
     let stdin = io::stdin();
     let file = File::open(file_path).unwrap();
@@ -89,7 +91,7 @@ fn simulate_rope(file_path: &str, tail_len: usize) -> io::Result<()> {
             let pos_str: String = format!("{}-{}", x, y);
             let pos = (x, y);
             if head == (x, y) {
-                print!("H");
+                dprint!("H");
             } else if tail.contains(&pos) {
                 let t: usize = tail
                     .iter()
@@ -98,18 +100,18 @@ fn simulate_rope(file_path: &str, tail_len: usize) -> io::Result<()> {
                     .map(|(i, t)| i)
                     .next()
                     .unwrap();
-                print!("{}", t + 1);
+                dprint!("{}", t + 1);
             } else if (0, 0) == (x, y) {
-                print!("s");
+                dprint!("s");
             } else if tail_path.contains(pos_str.as_str()) {
-                print!("#");
+                dprint!("#");
             } else {
-                print!(".");
+                dprint!(".");
             }
         }
-        println!();
+        dprintln!();
     }
-    println!();
+    dprintln!();
 
     let tail_pos_num = tail_path.len();
     println!("number of positions visited by tail: {tail_pos_num}");
