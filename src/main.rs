@@ -147,6 +147,7 @@ fn main() {
             for (i, diff) in diffs.iter().enumerate() {
                 println!("Day {} time: {} us", i + 1, diff.as_micros());
             }
+            println!("Total time: {} ms", diffs.iter().map(|d| d.as_micros()).sum::<u128>() / 1000);
         }
         _ => {}
     }
