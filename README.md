@@ -37,5 +37,6 @@ For these naive solutions, the following times (n=1) were obtained on an AMD Ryz
 | 9                | 13.3 ms |
 | 10               | 37 us   |
 | 11               | 23.6 ms |
+| 12               | 2.0 ms  |
 
-Total: 43 ms
+Total: 44 ms

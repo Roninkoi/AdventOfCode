@@ -7,6 +7,7 @@ use std::time::{Duration, Instant};
 mod day1;
 mod day10;
 mod day11;
+mod day12;
 mod day2;
 mod day3;
 mod day4;
@@ -86,6 +87,12 @@ fn main() {
             day11::day11_2("input/day11_input");
         };
     }
+    macro_rules! d12 {
+        () => {
+            day12::day12_1("input/day12_input");
+            day12::day12_2("input/day12_input");
+        };
+    }
 
     if day.is_none() {
         d1!();
@@ -99,6 +106,7 @@ fn main() {
         d9!();
         d10!();
         d11!();
+        d12!();
         return;
     }
 
@@ -114,6 +122,7 @@ fn main() {
         "day9" => { d9!(); }
         "day10" => { d10!(); }
         "day11" => { d11!(); }
+        "day12" => { d12!(); }
         "bench" => {
             let mut diffs: Vec<Duration> = Vec::new();
             let mut start = Instant::now();
@@ -142,6 +151,8 @@ fn main() {
             d10!();
             measure();
             d11!();
+            measure();
+            d12!();
             measure();
 
             for (i, diff) in diffs.iter().enumerate() {
