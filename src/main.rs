@@ -24,72 +24,95 @@ fn main() {
 
     macro_rules! d1 {
         () => {
+            println!("=== Day 1, part 1 ===");
             day1::day1_1("input/day1_input");
+            println!("=== Day 1, part 2 ===");
             day1::day1_2("input/day1_input");
         };
     }
     macro_rules! d2 {
         () => {
+            println!("=== Day 2, part 1 ===");
             day2::day2_1("input/day2_input");
+            println!("=== Day 2, part 2 ===");
             day2::day2_2("input/day2_input");
         };
     }
     macro_rules! d3 {
         () => {
+            println!("=== Day 3, part 1 ===");
             day3::day3_1("input/day3_input");
+            println!("=== Day 3, part 2 ===");
             day3::day3_2("input/day3_input");
         };
     }
     macro_rules! d4 {
         () => {
+            println!("=== Day 4, part 1 ===");
             day4::day4_1("input/day4_input");
+            println!("=== Day 4, part 2 ===");
             day4::day4_2("input/day4_input");
         };
     }
     macro_rules! d5 {
         () => {
+            println!("=== Day 5, part 1 ===");
             day5::day5_1("input/day5_input");
+            println!("=== Day 5, part 2 ===");
             day5::day5_2("input/day5_input");
         };
     }
     macro_rules! d6 {
         () => {
+            println!("=== Day 6, part 1 ===");
             day6::day6_1("input/day6_input");
+            println!("=== Day 6, part 2 ===");
             day6::day6_2("input/day6_input");
         };
     }
     macro_rules! d7 {
         () => {
+            println!("=== Day 7, part 1 ===");
             day7::day7_1("input/day7_input");
+            println!("=== Day 7, part 2 ===");
             day7::day7_2("input/day7_input");
         };
     }
     macro_rules! d8 {
         () => {
+            println!("=== Day 8, part 1 ===");
             day8::day8_1("input/day8_input");
+            println!("=== Day 8, part 2 ===");
             day8::day8_2("input/day8_input");
         };
     }
     macro_rules! d9 {
         () => {
+            println!("=== Day 9, part 1 ===");
             day9::day9_1("input/day9_input");
+            println!("=== Day 9, part 2 ===");
             day9::day9_2("input/day9_input");
         };
     }
     macro_rules! d10 {
         () => {
+            println!("=== Day 10 ===");
             day10::day10("input/day10_input");
         };
     }
     macro_rules! d11 {
         () => {
+            println!("=== Day 11, part 1 ===");
             day11::day11_1("input/day11_input");
+            println!("=== Day 11, part 2 ===");
             day11::day11_2("input/day11_input");
         };
     }
     macro_rules! d12 {
         () => {
+            println!("=== Day 12, part 1 ===");
             day12::day12_1("input/day12_input");
+            println!("=== Day 12, part 2 ===");
             day12::day12_2("input/day12_input");
         };
     }
