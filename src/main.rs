@@ -8,6 +8,7 @@ mod day1;
 mod day10;
 mod day11;
 mod day12;
+mod day13;
 mod day2;
 mod day3;
 mod day4;
@@ -116,6 +117,14 @@ fn main() {
             day12::day12_2("input/day12_input");
         };
     }
+    macro_rules! d13 {
+        () => {
+            println!("=== Day 13, part 1 ===");
+            day13::day13_1("input/day13_ex");
+            /*println!("=== Day 13, part 2 ===");
+            day13::day13_2("input/day13_input");*/
+        };
+    }
 
     if day.is_none() {
         d1!();
@@ -130,6 +139,7 @@ fn main() {
         d10!();
         d11!();
         d12!();
+        d13!();
         return;
     }
 
