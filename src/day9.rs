@@ -6,7 +6,7 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 fn read_motions(file_path: &str) -> Vec<(String, i32)> {
     let stdin = io::stdin();

@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 ///
 /// Calculate priorities of items in pocket: a-z = 1-26, A-Z = 27-52

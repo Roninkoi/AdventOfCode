@@ -48,7 +48,13 @@ fn to_char(h: i32) -> char {
     (h as u8 + 'a' as u8) as char
 }
 
-fn print_heights(heights: &Vec<Vec<i32>>, pos: &(usize, usize), start: &(usize, usize), end: &(usize, usize), visited: &HashSet<(usize, usize)>) {
+fn print_heights(
+    heights: &Vec<Vec<i32>>,
+    pos: &(usize, usize),
+    start: &(usize, usize),
+    end: &(usize, usize),
+    visited: &HashSet<(usize, usize)>,
+) {
     for (i, row) in heights.iter().enumerate() {
         for (j, col) in row.iter().enumerate() {
             let ji = (j, i);
@@ -198,15 +204,11 @@ pub fn day12_2(file_path: &str) -> io::Result<()> {
     let h = heights.len();
     let w = heights.first().unwrap().len();
 
-
     let mut step = 0;
     let mut shortest = 0;
     let mut pos = (0, 0);
     let mut dist = 0u32;
-    path.push_back(Path {
-        pos: end,
-        dist: 0,
-    });
+    path.push_back(Path { pos: end, dist: 0 });
     visited.insert(start);
 
     print_heights(&heights, &pos, &start, &end, &visited);

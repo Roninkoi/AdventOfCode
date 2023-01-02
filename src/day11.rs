@@ -7,7 +7,7 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 #[derive(Clone, Debug)]
 struct Monke {

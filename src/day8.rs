@@ -5,7 +5,7 @@ use std::io;
 use std::io::{BufRead, BufReader, Read};
 use std::rc::Rc;
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 fn get_visible<'a, I>(mut iter: I) -> Vec<bool>
 where

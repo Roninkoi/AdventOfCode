@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, Read};
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 pub fn day5_1(file_path: &str) -> io::Result<()> {
     crate_mover(file_path, true)

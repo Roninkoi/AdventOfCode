@@ -120,7 +120,7 @@ fn main() {
     macro_rules! d13 {
         () => {
             println!("=== Day 13, part 1 ===");
-            day13::day13_1("input/day13_ex");
+            day13::day13_1("input/day13_input");
             /*println!("=== Day 13, part 2 ===");
             day13::day13_2("input/day13_input");*/
         };
@@ -144,18 +144,42 @@ fn main() {
     }
 
     match day.unwrap().as_str() {
-        "day1" => { d1!(); }
-        "day2" => { d2!(); }
-        "day3" => { d3!(); }
-        "day4" => { d4!(); }
-        "day5" => { d5!(); }
-        "day6" => { d6!(); }
-        "day7" => { d7!(); }
-        "day8" => { d8!(); }
-        "day9" => { d9!(); }
-        "day10" => { d10!(); }
-        "day11" => { d11!(); }
-        "day12" => { d12!(); }
+        "day1" => {
+            d1!();
+        }
+        "day2" => {
+            d2!();
+        }
+        "day3" => {
+            d3!();
+        }
+        "day4" => {
+            d4!();
+        }
+        "day5" => {
+            d5!();
+        }
+        "day6" => {
+            d6!();
+        }
+        "day7" => {
+            d7!();
+        }
+        "day8" => {
+            d8!();
+        }
+        "day9" => {
+            d9!();
+        }
+        "day10" => {
+            d10!();
+        }
+        "day11" => {
+            d11!();
+        }
+        "day12" => {
+            d12!();
+        }
         "bench" => {
             let mut diffs: Vec<Duration> = Vec::new();
             let mut start = Instant::now();
@@ -191,7 +215,10 @@ fn main() {
             for (i, diff) in diffs.iter().enumerate() {
                 println!("Day {} time: {} us", i + 1, diff.as_micros());
             }
-            println!("Total time: {} ms", diffs.iter().map(|d| d.as_micros()).sum::<u128>() / 1000);
+            println!(
+                "Total time: {} ms",
+                diffs.iter().map(|d| d.as_micros()).sum::<u128>() / 1000
+            );
         }
         _ => {}
     }

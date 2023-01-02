@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader};
 
-use crate::util::{dprintln, dprint};
+use crate::util::{dprint, dprintln};
 
 pub fn day1_1(file_path: &str) {
     let stdin = io::stdin();

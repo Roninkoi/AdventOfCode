@@ -6,8 +6,7 @@ macro_rules! dprintln {
 }
 #[cfg(not(debug_assertions))]
 macro_rules! dprintln {
-    ($($arg:tt)*) => {{
-    }};
+    ($($arg:tt)*) => {{}};
 }
 #[cfg(debug_assertions)]
 macro_rules! dprint {
@@ -17,9 +16,8 @@ macro_rules! dprint {
 }
 #[cfg(not(debug_assertions))]
 macro_rules! dprint {
-    ($($arg:tt)*) => {{
-    }};
+    ($($arg:tt)*) => {{}};
 }
 
-pub(crate) use dprintln;
 pub(crate) use dprint;
+pub(crate) use dprintln;
